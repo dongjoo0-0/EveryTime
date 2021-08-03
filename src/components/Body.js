@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './Body.css'
+import './Body.css';
 import profile from '../default-user-icon-13.jpg';
+import Card from './Card';
 
 class Left extends Component {
   render(){
@@ -37,6 +38,9 @@ class Right extends Component {
     return(
       <div id="right">
         Right Side
+        <Card func="real-time-best" />
+        <Card func="hot-content" />
+        <Card func="best-boards" />
       </div>
     );
   }

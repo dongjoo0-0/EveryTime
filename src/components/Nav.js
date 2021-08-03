@@ -8,7 +8,7 @@ class TopNav extends Component {
       <nav>
         <div className="container">
           <div id="logo">
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="logo" href="/" />
             <p>
               <span id="service-name">이브이타임</span>
               <span id="campus-name">KAIST</span>

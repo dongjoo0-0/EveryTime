@@ -17,14 +17,14 @@
   position: absolute;
   right: 25px;
   top: 0;
-  width: 200px;
+  width: 280px;
   height: 300px;
 }
 
 #boards {
   position: relative;
   left: 240px;
-  width: 700px;
+  width: 620px;
 }
 
 /* Left style */

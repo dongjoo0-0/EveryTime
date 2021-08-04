@@ -2,6 +2,7 @@
 
 nav {
   position: fixed;
+  z-index: 100;
   top: 0;
   left: 0;
   margin: 0 auto;
@@ -35,6 +36,7 @@ nav {
 
 #logo #service-name {
   color: brown;
+  font-weight: bold;
 }
 
 #logo #campus-name {
@@ -52,9 +54,21 @@ nav {
 #my-menu button {
   width: 40px;
   height: 40px;
-  font-size: 15px;
+  font-size: 20px;
   margin: 30px 0;
-  margin-right: 5px;
+  margin-right: 7px;
+  background-color: white;
+  text-align: center;
+  border: 1px solid #c6c6c6;
+  border-radius: 7px;
+}
+
+#my-menu button:hover {
+  cursor: pointer;
+}
+
+#my-menu button:active {
+  background-color: #d6d6d6;
 }
 
 /* Menu List Style */

@@ -15,8 +15,8 @@ class TopNav extends Component {
             </p>
           </div>
           <div id="my-menu">
-            <button>mail</button>
-            <button>my</button>
+            <button>&#128231;</button>
+            <button>&#128118;</button>
           </div>
           <ul id="nav-list">
             <li className="active"><a href="/">게시판</a></li>

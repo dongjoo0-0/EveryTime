@@ -1,29 +1,92 @@
 import React, { Component } from 'react';
 import './Card.css';
 
+class CardArticle extends Component {
+  render(){
+    const boxes = [];
+    
+    boxes.push(<p id="title">{this.props.title}</p>);
+    
+    boxes.push(<p id="small">{this.props.small}</p>);
+    
+    boxes.push(<span>{this.props.boardtype}</span>);
+    //boxes.push(<time>{this.props.time}</time>);
+    
+    boxes.push(
+      <ul>
+        <li className="vote">&#128077; {this.props.voteCnt}</li>
+        <li className="comment">&#128172; {this.props.commentCnt}</li>
+      </ul>
+    );
+    
+    return(<a className="article" href={this.props.link}>{boxes}</a>);
+  }
+}
+
+
+
+class CardList extends Component {
+  render() {
+    const boxes = [];
+    
+    boxes.push(<time>{this.props.time}</time>);
+    boxes.push(<p id="title">{this.props.title}</p>);
+    
+    return(<a className="list" href={this.props.link}>{boxes}</a>);
+  }
+}
+
+
+
 class Card extends Component {
   render(){
-    return(
-      <div className="card">
-        {
-          {
-            'real-time-best': 
-              <h3>실시간 인기 글</h3>
-              ,
-            'hot-content' : 
-              <h3>
-                <a href="/hotcontent">HOT 게시글</a>
-                <span href="/hotcontent">더 보기</span>
-              </h3>,
-            'best-boards' : 
-              <h3>
-                <a href="/bestboards">BEST 게시판</a>
-                <span href="/bestboards">더 보기</span>
-              </h3>
-          }[this.props.func]
-        }
-      </div>
-    );
+    const boxes = [];
+    
+    const title = [
+      <a href={this.props.router}>{this.props.title}</a>
+    ];
+    
+    //if it needs plus
+    if(this.props.func === 'hot-content' ||
+       this.props.func === 'best-boards'){
+       title.push(<span href={this.props.router}>더보기</span>);
+    }
+    
+    //title push 
+    boxes.push(<h3>{title}</h3>);
+    
+    const boardtype = ["자유게시판", "장터게시판", "홍보게시판", "비밀게시판"];
+    
+    
+    
+    //if it needs child article type
+    if(this.props.type === 'article'){
+      for (let i=0; i<2; i++){
+        boxes.push(
+          <CardArticle 
+            title="허걱"
+            small="ㅈㄱㄴ"
+            boardtype={boardtype[0]}
+            voteCnt="10"
+            commentCnt="3"
+            link="/1/1"
+          />
+        );
+      }
+    } else if (this.props.type === 'list'){
+      for (let i=0; i<4; i++){
+        boxes.push(
+          <CardList 
+            title="허걱"
+            time="방금"
+            link="/1/1"
+          />
+        );
+      }
+    }
+    
+    
+    return(<div className="card" id={this.props.func}>{boxes}</div>);
   }
 }
 

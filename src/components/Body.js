@@ -7,7 +7,6 @@ class Left extends Component {
   render(){
     return(
       <div id="left">
-        Left Side
         <div id="my-card">
           <img src={profile} alt="profile" />
           <p className="nickname">동또선</p>
@@ -27,7 +26,30 @@ class BoardList extends Component {
   render(){
     return(
       <div id="boards">
-        BoardList
+        <Card
+          func="cardboard"
+          title="자유게시판"
+          router="/1"
+          type="list"
+        />
+        <Card
+          func="cardboard"
+          title="장터게시판"
+          router="/2"
+          type="list"
+        />
+        <Card
+          func="cardboard"
+          title="홍보게시판"
+          router="/3"
+          type="list"
+        />
+        <Card
+          func="cardboard"
+          title="비밀게시판"
+          router="/4"
+          type="article"
+        />
       </div>
     )
   }
@@ -37,10 +59,22 @@ class Right extends Component {
   render(){
     return(
       <div id="right">
-        Right Side
-        <Card func="real-time-best" />
-        <Card func="hot-content" />
-        <Card func="best-boards" />
+        <Card 
+          func="real-time-best" 
+          title="실시간 인기 글"
+          type="article"
+        />
+        <Card 
+          func="hot-content"
+          title="HOT 게시글"
+          router="/hotcontent"
+          type="list"
+        />
+        <Card 
+          func="best-boards"
+          title="BEST 게시판"
+          router="/bestboards"
+        />
       </div>
     );
   }

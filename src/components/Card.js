@@ -42,27 +42,6 @@ class CardList extends Component {
 
 class Card extends Component {
   render(){
-<<<<<<< HEAD
-    
-    console.log(this.props.data);
-
-=======
-    async function getData() {
-      try {
-        const response = await axios({
-                                method:'get',
-                                url:'https://110.76.77.23:8080/',
-                              });
-        console.log(response);
-        console.log('hello');
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    
-    getData();
-    
->>>>>>> 6f10d30168e7bea358d71116670f05f4b567de09
     const boxes = [];
     
     const title = [

@@ -3,11 +3,8 @@ import './Body.css';
 import profile from '../default-user-icon-13.jpg';
 import Card from './Card';
 import { Route } from 'react-router-dom';
-<<<<<<< HEAD
 
 const axios = require('axios');
-=======
->>>>>>> 6f10d30168e7bea358d71116670f05f4b567de09
 
 class Left extends Component {
   render(){
@@ -96,7 +93,6 @@ class Right extends Component {
 
 
 class CardBoard extends Component {
-<<<<<<< HEAD
   render(){
     const boardtype = {
       '1' : "자유게시판",
@@ -115,40 +111,6 @@ class CardBoard extends Component {
           title={title}
           type="cardboard"
         />
-=======
-  render(){
-    const boardtype = {
-      '1' : "자유게시판",
-      '2' : "장터게시판",
-      '3' : "홍보게시판",
-      '4' : "비밀게시판",
-      'hotcontent' : "HOT 게시글",
-      'bestboards' : "BEST 게시판"
-    }
-    
-    const title = boardtype[this.props.match.params.board];
-    
-    return(
-      <div id="mainboards">
-        <Card 
-          title={title}
-          type="cardboard"
-        />
-      </div>
-    );
-  }
-}
-
-
-class Body extends Component {
-  render(){
-    return (
-      <div id="wrapper">
-        <Route exact path="/" component={Left}/>
-        <Route exact path="/" component={BoardList}/>
-        <Route path="/:board" component={CardBoard}/>
-        <Right />
->>>>>>> 6f10d30168e7bea358d71116670f05f4b567de09
       </div>
     );
   }

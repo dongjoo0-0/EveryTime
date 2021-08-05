@@ -40,6 +40,9 @@ class CardList extends Component {
 
 class Card extends Component {
   render(){
+    
+    console.log(this.props.data);
+
     const boxes = [];
     
     const title = [
@@ -58,7 +61,18 @@ class Card extends Component {
     const boardtype = ["자유게시판", "장터게시판", "홍보게시판", "비밀게시판"];
     
     
-    
+    if(this.props.data){
+      for(let i=0; i<this.props.data.length; i++){
+        boxes.push(
+          <CardList
+            title={this.props.data[i]['title']}
+            time={this.props.data[i]['updateAt']}
+          />
+        )
+      }
+    }
+
+
     //if it needs child article type
     if(this.props.type === 'article'){
       for (let i=0; i<2; i++){
@@ -82,6 +96,19 @@ class Card extends Component {
             link="/1/1"
           />
         );
+      }
+    } else if (this.props.type === 'cardboard'){
+      for (let i=0; i<10; i++){
+        boxes.push(
+          <CardArticle
+            title="게시판"
+            small="호롤롤롤로"
+            time="방금"
+            voteCnt="10"
+            commentCnt="3"
+            link="/1/1"
+          />
+        )
       }
     }
     

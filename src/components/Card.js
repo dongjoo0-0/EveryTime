@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Card.css';
 
+const axios = require('axios');
+
 class CardArticle extends Component {
   render(){
     const boxes = [];
@@ -40,6 +42,21 @@ class CardList extends Component {
 
 class Card extends Component {
   render(){
+    async function getData() {
+      try {
+        const response = await axios({
+                                method:'get',
+                                url:'https://110.76.77.23:8080/',
+                              });
+        console.log(response);
+        console.log('hello');
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    
+    getData();
+    
     const boxes = [];
     
     const title = [
@@ -82,6 +99,19 @@ class Card extends Component {
             link="/1/1"
           />
         );
+      }
+    } else if (this.props.type === 'cardboard'){
+      for (let i=0; i<10; i++){
+        boxes.push(
+          <CardArticle
+            title="게시판"
+            small="호롤롤롤로"
+            time="방금"
+            voteCnt="10"
+            commentCnt="3"
+            link="/1/1"
+          />
+        )
       }
     }
     

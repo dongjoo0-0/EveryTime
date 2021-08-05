@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Body.css';
 import profile from '../default-user-icon-13.jpg';
 import Card from './Card';
+import { Route } from 'react-router-dom';
 
 class Left extends Component {
   render(){
@@ -80,12 +81,39 @@ class Right extends Component {
   }
 }
 
+
+class CardBoard extends Component {
+  render(){
+    const boardtype = {
+      '1' : "자유게시판",
+      '2' : "장터게시판",
+      '3' : "홍보게시판",
+      '4' : "비밀게시판",
+      'hotcontent' : "HOT 게시글",
+      'bestboards' : "BEST 게시판"
+    }
+    
+    const title = boardtype[this.props.match.params.board];
+    
+    return(
+      <div id="mainboards">
+        <Card 
+          title={title}
+          type="cardboard"
+        />
+      </div>
+    );
+  }
+}
+
+
 class Body extends Component {
   render(){
     return (
       <div id="wrapper">
-        <Left />
-        <BoardList />
+        <Route exact path="/" component={Left}/>
+        <Route exact path="/" component={BoardList}/>
+        <Route path="/:board" component={CardBoard}/>
         <Right />
       </div>
     );

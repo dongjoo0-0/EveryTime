@@ -17,7 +17,7 @@
   position: absolute;
   right: 25px;
   top: 0;
-  width: 280px;
+  width: 290px;
   height: 300px;
 }
 
@@ -25,6 +25,12 @@
   position: relative;
   left: 240px;
   width: 620px;
+}
+
+#mainboards {
+  position: relative;
+  left: 25px;
+  width: 830px;
 }
 
 /* Left style */

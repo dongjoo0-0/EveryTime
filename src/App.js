@@ -1,14 +1,32 @@
 import React, { Component } from 'react';
 import Nav from './components/Nav';
 import Body from './components/Body';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import Login from './components/Login';
+import Register from './components/Register';
 
 class App extends Component {
+  state = {
+    loggedIn : false
+  }
+
   render(){
     return(
-      <div>
-        <Nav />
-        <Body />
-      </div>
+      <Switch>
+        <Route path="/login">
+          {this.state.loggedIn ? <Redirect to="/" /> : <Login setState={loggedIn => {this.setState(loggedIn)}} />}
+        </Route>
+        <Route path="/register" component={<Register />} />
+        <Route path="/">
+          {this.state.loggedIn
+            ? <div>
+                <Nav />
+                <Body />
+              </div>
+            : <Redirect to="/login" />}
+          
+        </Route>
+      </Switch>
     );
   }
 }

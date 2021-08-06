@@ -148,7 +148,6 @@ class Body extends Component {
         </div>
       );
     } else {
-      
       return(
         <div id="wrapper">
           <Route exact path="/" component={Left}/>

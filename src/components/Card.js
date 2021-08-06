@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Card.css';
 
-const axios = require('axios');
+//const axios = require('axios');
 
 class CardArticle extends Component {
   render(){

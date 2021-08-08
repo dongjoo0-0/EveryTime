@@ -124,7 +124,7 @@ class Body extends Component {
 
   getData = () => {
     axios
-      .get('http://localhost:3000')
+      .get('http://110.76.77.23:8080/')
       .then(
         returnData => {
           console.log(returnData);

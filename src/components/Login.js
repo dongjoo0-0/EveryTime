@@ -1,9 +1,48 @@
 import React, {Component} from 'react';
+import { withRouter } from 'react-router-dom';
+import logo from '../eevee.svg';
+import './form.css';
+
+const axios = require('axios');
 
 class Login extends Component {
-    render(){
-        return(<></>);
-    }
+  constructor(props){
+    super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    axios
+      .post('http://110.76.77.23:8080/login', {id: event.target[0].value, password: event.target[1].value})
+      .then(
+        returnData => {
+          if(returnData.data.result){
+            this.props.setState(true);
+            this.props.history.push("/");
+          } else {
+            alert(returnData.data.reason);
+          }
+        }
+      );
+  }
+
+  render(){
+    return(
+      <div className="form">
+        <span>지금 <strong>이브이타임</strong>을 시작하세요!</span>
+        <a className="logo" href="/"><img src={logo} alt="logo" /></a>
+        <form onSubmit={this.handleSubmit}>
+          <p className="input"><input type="text" name="id" id="id" placeholder="아이디" required /></p>
+          <p className="input"><input type="password" name="password" id="password" placeholder="비밀번호" required /></p>
+          <p className="submit"><input type="submit" value="로그인" /></p>
+        </form>
+        <p align="center">아직 회원이 아니신가요? <a className="register" href="/register">회원가입</a></p>
+      </div>
+    );
+  }
 }
 
-export default Login;
+export default withRouter(Login);

@@ -14,9 +14,9 @@ class App extends Component {
     return(
       <Switch>
         <Route path="/login">
-          {this.state.loggedIn ? <Redirect to="/" /> : <Login setState={loggedIn => {this.setState(loggedIn)}} />}
+          {this.state.loggedIn ? <Redirect to="/" /> : <Login setState={result => {this.setState({loggedIn: result})}} />}
         </Route>
-        <Route path="/register" component={<Register />} />
+        <Route path="/register" component={Register} />
         <Route path="/">
           {this.state.loggedIn
             ? <div>

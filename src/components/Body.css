@@ -82,3 +82,168 @@
 #my-card .buttons li:last-child a {
   margin-right: 0;
 }
+
+/* total card style */
+
+.card {
+  background-color: #f6f6f6;
+  border: 1px solid #d6d6d6;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.card h3 {
+  margin: 0 auto;
+  padding: 15px;
+  font-size: 17px;
+  line-height: 17px;
+}
+
+/* right card style */
+
+#right .card{
+  width: 100%;
+}
+
+#right .card h3 {
+  color: darkblue;
+}
+
+#right .card h3 a {
+  color: darkblue;
+}
+
+.card h3 span a{
+  float: right;
+  font-size: 14px;
+  color: #c6c6c6;
+  cursor: pointer;
+}
+
+/* main board style */
+
+#boards .card {
+  background-color: white;
+  width: 300px;
+  margin-right: 10px;
+  float: left;
+}
+
+#boards .card h3 {
+  font-size: 17px;
+  line-height: 17px;
+}
+
+#boards .card h3 a {
+  color: brown;
+}
+
+/* article type child style */
+
+.article {
+  color: black;
+  display: block;
+  padding: 10px;
+  border-top: 1px solid #d6d6d6;
+}
+
+#right .article:hover {
+  background-color: white;
+}
+
+#boards .article:hover {
+  background-color: #f6f6f6;
+}
+
+.article #title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+.article #small {
+  font-size: 13px;
+  height: 32px;
+  line-height: 15px;
+  overflow: hidden;
+}
+
+.article span {
+  float: left;
+  font-size: 12px;
+  line-height: 12px;
+  color: #c6c6c6;
+  margin-right: 5px;
+}
+
+.article time {
+  float: right;
+  font-size: 12px;
+  line-height: 18px;
+  color: #c6c6c6;
+  margin-left: 5px;
+}
+
+.article ul {
+  float: left;
+}
+
+.article ul li {
+  float: left;
+  border: none;
+  padding: 0 5px;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.article ul li.vote {
+  color: brown;
+}
+
+.article ul li.comment {
+  color: #33ccff;
+}
+
+.article::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* list type child style */
+
+.list {
+  color: black;
+  display: block;
+  padding: 10px;
+  border-top: 1px solid #d6d6d6;
+}
+
+#right .list:hover {
+  background-color: white;
+}
+
+#boards .list:hover {
+  background-color: #f6f6f6;
+}
+
+.list p {
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: 24px;
+}
+
+.list time {
+  float: right;
+  font-size: 12px;
+  line-height: 18px;
+  color: #c6c6c6;
+  margin-left: 5px;
+}
+
+.list::after {
+  content: "";
+  clear: both;
+  display: table;
+}

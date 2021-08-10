@@ -7,14 +7,14 @@ import Register from './components/Register';
 
 class App extends Component {
   state = {
-    loggedIn : false
+    loggedIn : true
   }
 
   render(){
     return(
       <Switch>
         <Route path="/login">
-          {this.state.loggedIn ? <Redirect to="/" /> : <Login setState={result => {this.setState({loggedIn: result})}} />}
+          {this.state.loggedIn ? <Redirect to={{pahtname: "/", state: {loggedIn: true}}} /> : <Login setState={result => {this.setState({loggedIn: result})}} />}
         </Route>
         <Route path="/register" component={Register} />
         <Route path="/">
@@ -24,7 +24,6 @@ class App extends Component {
                 <Body />
               </div>
             : <Redirect to="/login" />}
-          
         </Route>
       </Switch>
     );

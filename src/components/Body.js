@@ -26,41 +26,16 @@ class Left extends Component {
 }
 
 class BoardList extends Component {
-  state ={
-    data : this.props.data
-  };
-
   render(){
+    const boards = [
+      {link :"/1", title: "자유게시판", length: 4, type: "list", key: 1},
+      {link :"/2", title: "장터게시판", length: 4, type: "list", key: 2},
+      {link :"/3", title: "홍보게시판", length: 4, type: "list", key: 3},
+      {link :"/4", title: "비밀게시판", length: 2, type: "article", key: 4}
+    ];
     return(
       <div id="boards">
-        <Card
-          func="cardboard"
-          title="자유게시판"
-          router="/1"
-          type="list"
-          data={this.state.data[1]}
-        />
-        <Card
-          func="cardboard"
-          title="장터게시판"
-          router="/2"
-          type="list"
-          data={this.state.data[2]}
-        />
-        <Card
-          func="cardboard"
-          title="홍보게시판"
-          router="/3"
-          type="list"
-          data={this.state.data[3]}
-        />
-        <Card
-          func="cardboard"
-          title="비밀게시판"
-          router="/4"
-          type="article"
-          data={this.state.data[4]}
-        />
+        {boards.map(board => {return <Card {...board}/>})}
       </div>
     )
   }
@@ -68,24 +43,14 @@ class BoardList extends Component {
 
 class Right extends Component {
   render(){
+    const boards = [
+      {link :"/101", title: "실시간 인기 글", length: 2, type: "article", key: 1},
+      {link :"/102", title: "HOT 게시글", length: 2, plus: true, type: "list", key: 2},
+      {link :"/103", title: "BEST 게시판", plus: true, key: 3}
+    ];
     return(
       <div id="right">
-        <Card 
-          func="real-time-best" 
-          title="실시간 인기 글"
-          type="article"
-        />
-        <Card 
-          func="hot-content"
-          title="HOT 게시글"
-          router="/hotcontent"
-          type="list"
-        />
-        <Card 
-          func="best-boards"
-          title="BEST 게시판"
-          router="/bestboards"
-        />
+        {boards.map(board => {return <Card {...board} />})}
       </div>
     );
   }
@@ -99,8 +64,8 @@ class CardBoard extends Component {
       '2' : "장터게시판",
       '3' : "홍보게시판",
       '4' : "비밀게시판",
-      'hotcontent' : "HOT 게시글",
-      'bestboards' : "BEST 게시판"
+      '102' : "HOT 게시글",
+      '103' : "BEST 게시판"
     }
     
     const title = boardtype[this.props.match.params.board];
@@ -109,7 +74,8 @@ class CardBoard extends Component {
       <div id="mainboards">
         <Card 
           title={title}
-          type="cardboard"
+          length={10}
+          type="article"
         />
       </div>
     );
@@ -122,24 +88,10 @@ class Body extends Component {
     data : null,
   }
 
-  getData = () => {
-    axios
-      .get('http://110.76.77.23:8080/')
-      .then(
-        returnData => {
-          console.log(returnData);
-          this.setState({data : returnData.data});
-        }
-      )
-  }
-
-  componentDidMount() {
-    this.getData();
-  }
-
   render(){
     console.log(this.state.data);
-    if(this.state.data === null){
+    //if(this.state.data === null){
+    if(this.state.data !== null){
       // Render loading state ...
       return (
         <div id="wrapper">
@@ -152,7 +104,7 @@ class Body extends Component {
         <div id="wrapper">
           <Route exact path="/" component={Left}/>
           <Route exact path="/" 
-            component={() => <BoardList data={this.state.data} />}
+            component={() => <BoardList/>}
           />
           <Route path="/:board" component={CardBoard}/>
           <Right />

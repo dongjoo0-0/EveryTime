@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import logo from '../eevee.svg';
 import './form.css';
 
@@ -41,13 +41,13 @@ class Register extends Component {
   handleSubmit(event) {
     event.preventDefault();
     axios
-      .post("http://110.76.77.23:8080/register", this.state)
+      .post("http://localhost:3000/register", this.state)
       .then(() => {this.props.history.push("/")});
   }
 
   handleClick(event) {
     axios
-      .post("http://110.76.77.23:8080/register/id", {id: this.state.id})
+      .post("http://localhost:3000/register/id", {id: this.state.id})
       .then(
         /* returnData : Object
          .data : boolean (true or false)
@@ -69,7 +69,7 @@ class Register extends Component {
     return(
       <div className="form">
         <span><strong>회원가입</strong>에 필요한 정보입니다.</span>
-        <a className="logo" href="/"><img src={logo} alt="logo" /></a>
+        <Link className="logo" to="/"><img src={logo} alt="logo" /></Link>
         <form onSubmit={this.handleSubmit}>
           <p className="input"><input type="text" name="id" id="id" placeholder="아이디" onChange={this.handleChange} ref={this.idInput} required /></p>
           <p className="submit"><input type="button" name="id-checker" id="id-checker" onClick={this.handleClick} value="중복확인" required /></p>

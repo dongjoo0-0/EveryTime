@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Write from './Write';
 
 const axios = require('axios');
 
@@ -30,7 +31,7 @@ class CardArticle extends Component {
 
 class Card extends Component {
   state = {
-    data: {
+    /*data: {
       title:"허걱",
       small:"ㅈㄱㄴ",
       time:"방금",
@@ -39,23 +40,23 @@ class Card extends Component {
       commentCnt:"3",
       link:"/1/1",
       type: this.props.type
-    }
+    }*/
 
-    /*data : {
+    data : {
       title: "호고곡",
       time: "방금",
       link: "/1/1",
       type: this.props.type
-    }*/
+    }
     
   }
 
-  //props: {title, style, length, plus : boolean, link, type}
+  //props: {title, style, length, write: boolean, plus : boolean, link, type}
   // {'자유게시판' , 'list', 4, '/1', 'article'}
 
   getData = () => {
     axios
-      .get(this.props.link + '/?length=' + this.props.length )
+      .get(this.props.link + '/?length=' + this.props.length + '&type=' + this.props.type)
       .then(
         // data : [ ... {title, desc, time, boardtype, voteCnt, commentCnt, id(link)}]
         returnData => {
@@ -91,12 +92,15 @@ class Card extends Component {
         )
       }
     }*/
+    if(this.props.write){
+      boxes.push(<Write link={this.props.write}/>)
+    }
 
     for (let i=0; i<this.props.length; i++){
       boxes.push(<CardArticle {...this.state.data}/>);
     }
     
-    return(<div className="card" key={this.props.key}>{boxes}</div>);
+    return(<div className="card">{boxes}</div>);
   }
 }
 

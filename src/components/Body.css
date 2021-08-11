@@ -247,3 +247,7 @@
   clear: both;
   display: table;
 }
+
+#mainboards .card h3 a {
+  color: brown;
+}

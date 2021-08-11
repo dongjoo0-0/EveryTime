@@ -4,8 +4,6 @@ import profile from '../default-user-icon-13.jpg';
 import Card from './Card';
 import { Route } from 'react-router-dom';
 
-const axios = require('axios');
-
 class Left extends Component {
   render(){
     return(
@@ -44,9 +42,9 @@ class BoardList extends Component {
 class Right extends Component {
   render(){
     const boards = [
-      {link :"/101", title: "실시간 인기 글", length: 2, type: "article", key: 1},
-      {link :"/102", title: "HOT 게시글", length: 2, plus: true, type: "list", key: 2},
-      {link :"/103", title: "BEST 게시판", plus: true, key: 3}
+      {link :"/101", title: "실시간 인기 글", length: 2, type: "article", key: 101},
+      {link :"/102", title: "HOT 게시글", length: 2, plus: true, type: "list", key: 102},
+      {link :"/103", title: "BEST 게시판", plus: true, key: 103}
     ];
     return(
       <div id="right">
@@ -67,15 +65,19 @@ class CardBoard extends Component {
       '102' : "HOT 게시글",
       '103' : "BEST 게시판"
     }
+    const boardId = this.props.match.params.board;
     
-    const title = boardtype[this.props.match.params.board];
+    const title = boardtype[boardId];
     
     return(
       <div id="mainboards">
         <Card 
           title={title}
           length={10}
+          link={"/" + boardId}
           type="article"
+          write={"/" + boardId + "/new"}
+          key={1000 + Number(boardId)}
         />
       </div>
     );
@@ -89,7 +91,6 @@ class Body extends Component {
   }
 
   render(){
-    console.log(this.state.data);
     //if(this.state.data === null){
     if(this.state.data !== null){
       // Render loading state ...
@@ -103,10 +104,8 @@ class Body extends Component {
       return(
         <div id="wrapper">
           <Route exact path="/" component={Left}/>
-          <Route exact path="/" 
-            component={() => <BoardList/>}
-          />
-          <Route path="/:board" component={CardBoard}/>
+          <Route exact path="/" component={() => <BoardList/>}/>
+          <Route exact path="/:board" component={CardBoard}/>
           <Right />
         </div>
       );

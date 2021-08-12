@@ -7,19 +7,19 @@ const axios = require('axios');
 class CardArticle extends Component {
   render(){
     const boxes = [];
-    if(this.props.type === "list"){boxes.push(<time>{this.props.time}</time>);}
+    if(this.props.type === "list"){boxes.push(<time>{this.props.updateAt}</time>);}
     boxes.push(<p id="title">{this.props.title}</p>);
     
-    boxes.push(<p id="small">{this.props.small}</p>);
+    boxes.push(<p id="small">{this.props.content}</p>);
     
     boxes.push(<span>{this.props.boardtype}</span>);
-    if(this.props.type === "article"){boxes.push(<time>{this.props.time}</time>);}
+    if(this.props.type === "article"){boxes.push(<time>{this.props.updateAt}</time>);}
     
-    if(this.props.voteCnt && this.props.commentCnt){
+    if(typeof(this.props.numGood) === "number" && typeof(this.props.numComent) === "number"){
       boxes.push(
         <ul>
-          <li className="vote">&#128077; {this.props.voteCnt}</li>
-          <li className="comment">&#128172; {this.props.commentCnt}</li>
+          <li className="vote">&#128077; {this.props.numGood}</li>
+          <li className="comment">&#128172; {this.props.numComent}</li>
         </ul>
       );
     }
@@ -33,21 +33,24 @@ class Card extends Component {
   state = {
     /*data: {
       title:"허걱",
-      small:"ㅈㄱㄴ",
-      time:"방금",
-      //boardtype: "자유게시판",
-      voteCnt:"10",
-      commentCnt:"3",
+      content:"ㅈㄱㄴ",
+      updateAt:"방금",
+      boardtype: "자유게시판",
+      numGood:"10",
+      numComent:"3",
       link:"/1/1",
       type: this.props.type
     }*/
 
-    data : {
+    /*data : {
       title: "호고곡",
       time: "방금",
       link: "/1/1",
       type: this.props.type
-    }
+    }*/
+
+    data : {},
+    type : this.props.type
     
   }
 
@@ -56,7 +59,7 @@ class Card extends Component {
 
   getData = () => {
     axios
-      .get(this.props.link + '/?length=' + this.props.length + '&type=' + this.props.type)
+      .get('http://localhost:3000' + this.props.link + '?length=' + this.props.length + '&type=' + this.props.type)
       .then(
         // data : [ ... {title, desc, time, boardtype, voteCnt, commentCnt, id(link)}]
         returnData => {
@@ -64,6 +67,10 @@ class Card extends Component {
           this.setState({data : returnData.data});
         }
       );
+  }
+
+  componentDidMount(){
+    if(this.props.type){this.getData();}
   }
 
   render(){
@@ -97,7 +104,7 @@ class Card extends Component {
     }
 
     for (let i=0; i<this.props.length; i++){
-      boxes.push(<CardArticle {...this.state.data}/>);
+      boxes.push(<CardArticle type={this.state.type} {...this.state.data[i]}/>);
     }
     
     return(<div className="card">{boxes}</div>);

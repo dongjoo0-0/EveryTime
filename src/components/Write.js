@@ -7,7 +7,7 @@ class Write extends Component {
   constructor(props){
     super(props);
 
-    this.state = {toggle: true}
+    this.state = {toggle: true, data : {}}
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -15,11 +15,14 @@ class Write extends Component {
   handleSubmit(event){
     event.preventDefault();
 
+    this.setState({})
+
     axios
       .post('http://localhost:3000' + this.props.link, {title: event.target[0].value, desc: event.target[1].value, anonymous: event.target[2].value})
       .then(
         returnData => {
           console.log(returnData);
+          window.location.reload();
         }
       );
   }
@@ -35,8 +38,8 @@ class Write extends Component {
         :
           <div className="write-visible">
             <form onSubmit={this.handleSubmit}>
-              <p className="title"><input type="title" name="title" id="title" placeholder="글 제목" required /></p>
-              <p className="desc"><textarea name="desc" id="desc" placeholder="본문을 작성해주세요"required /></p>
+              <p className="title"><input type="title" name="title" id="title" placeholder="글 제목" autoComplete="off" required /></p>
+              <p className="desc"><textarea name="desc" id="desc" placeholder="본문을 작성해주세요" spellCheck="false" required /></p>
               <p className="submit"><input type="submit" value="작성하기" /></p>
               <div className="checkbox">
                 <label htmlFor="anonymous">익명</label>

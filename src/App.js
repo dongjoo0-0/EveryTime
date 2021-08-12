@@ -7,7 +7,7 @@ import Register from './components/Register';
 
 class App extends Component {
   state = {
-    loggedIn : true
+    loggedIn : false
   }
 
   render(){

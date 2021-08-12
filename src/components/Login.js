@@ -19,6 +19,7 @@ class Login extends Component {
       .post('http://localhost:3000/login', {id: event.target[0].value, password: event.target[1].value})
       .then(
         returnData => {
+          console.log(returnData);
           if(returnData.data.result){
             this.props.setState(true);
             this.props.history.push("/");

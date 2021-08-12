@@ -71,7 +71,7 @@ class Register extends Component {
         <span><strong>회원가입</strong>에 필요한 정보입니다.</span>
         <Link className="logo" to="/"><img src={logo} alt="logo" /></Link>
         <form onSubmit={this.handleSubmit}>
-          <p className="input"><input type="text" name="id" id="id" placeholder="아이디" onChange={this.handleChange} ref={this.idInput} required /></p>
+          <p className="input"><input type="text" name="id" id="id" placeholder="아이디" autoComplete="off" onChange={this.handleChange} ref={this.idInput} required /></p>
           <p className="submit"><input type="button" name="id-checker" id="id-checker" onClick={this.handleClick} value="중복확인" required /></p>
           <p className="input"><input type="password" name="password" id="password" placeholder="비밀번호" onChange={this.handleChange} required /></p>
           <p className="input"><input type="password" name="password-confirm" id="password-confirm" placeholder="비밀번호 확인" onChange={this.handleConfirm} required /></p>

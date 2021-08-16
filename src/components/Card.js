@@ -59,7 +59,7 @@ class Card extends Component {
 
   getData = () => {
     axios
-      .get('http://localhost:3000' + this.props.link + '?length=' + this.props.length + '&type=' + this.props.type)
+      .get(this.props.link + '?length=' + this.props.length + '&type=' + this.props.type)
       .then(
         // data : [ ... {title, desc, time, boardtype, voteCnt, commentCnt, id(link)}]
         returnData => {

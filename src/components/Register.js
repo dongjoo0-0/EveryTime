@@ -41,13 +41,13 @@ class Register extends Component {
   handleSubmit(event) {
     event.preventDefault();
     axios
-      .post("http://localhost:3000/register", this.state)
+      .post("/register", this.state)
       .then(() => {this.props.history.push("/")});
   }
 
   handleClick(event) {
     axios
-      .post("http://localhost:3000/register/id", {id: this.state.id})
+      .post("/register/id", {id: this.state.id})
       .then(
         /* returnData : Object
          .data : boolean (true or false)

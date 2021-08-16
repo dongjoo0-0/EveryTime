@@ -18,7 +18,7 @@ class Write extends Component {
     this.setState({})
 
     axios
-      .post('http://localhost:3000' + this.props.link, {title: event.target[0].value, desc: event.target[1].value, anonymous: event.target[2].value})
+      .post(this.props.link, {title: event.target[0].value, desc: event.target[1].value, anonymous: event.target[2].value})
       .then(
         returnData => {
           console.log(returnData);

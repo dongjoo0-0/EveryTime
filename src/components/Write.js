@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Write.css';
-
-const axios = require('axios');
+import axiosConfig from '../axiosConfig';
 
 class Write extends Component {
   constructor(props){
@@ -15,9 +14,7 @@ class Write extends Component {
   handleSubmit(event){
     event.preventDefault();
 
-    this.setState({})
-
-    axios
+    axiosConfig
       .post(this.props.link, {title: event.target[0].value, desc: event.target[1].value, anonymous: event.target[2].value})
       .then(
         returnData => {

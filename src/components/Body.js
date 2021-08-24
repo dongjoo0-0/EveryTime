@@ -3,6 +3,7 @@ import './Body.css';
 import profile from '../default-user-icon-13.jpg';
 import Card from './Card';
 import { Route } from 'react-router-dom';
+import axiosConfig from '../axiosConfig';
 
 class Left extends Component {
   render(){
@@ -84,37 +85,62 @@ class CardBoard extends Component {
   }
 }
 
-
-class Body extends Component {
+class Article extends Component {
   state = {
-    data : null,
+    data : null
+  }
+  
+  getData = () => {
+    axiosConfig
+      .get(this.props.location.pathname)
+      .then(returnData => {
+        console.log(returnData);
+        this.setState({data : returnData.data});
+      });
   }
 
   render(){
-    //if(this.state.data === null){
-    if(this.state.data !== null){
-      // Render loading state ...
-      return (
-        <div id="wrapper">
-          <Route exact path="/" component={Left}/>
-          <Right />
-        </div>
-      );
-    } else {
-      return(
-        <div id="wrapper">
-          <Route exact path="/" component={Left}/>
-          <Route exact path="/" component={() => <BoardList/>}/>
-          <Route exact path="/:board" component={CardBoard}/>
-          <Right />
-        </div>
-      );
+    const boardtype = {
+      '1' : "자유게시판",
+      '2' : "장터게시판",
+      '3' : "홍보게시판",
+      '4' : "비밀게시판",
+      '102' : "HOT 게시글",
+      '103' : "BEST 게시판"
     }
+    const boardId = this.props.match.params.board;
+    const articleId = this.props.match.params.article;
+    const title = boardtype[boardId];
+
+    const boxes = [];
+    boxes.push(<p className="article-title">{this.state.data.title}</p>);
+    boxes.push(<p className="article-content">{this.state.data.content}</p>);
+    boxes.push(
+      <ul>
+        <li className="vote">&#128077; {this.state.data.numGood}</li>
+        <li className="comment">&#128172; {this.state.data.numComent}</li>
+      </ul>
+    );
+    boxes.push(<button>&#128077; 좋아요</button>);
+    
+    return(<article>{boxes}</article>);
   }
 }
 
 
-
+class Body extends Component {
+  render(){
+    return(
+      <div id="wrapper">
+        <Route exact path="/" component={Left}/>
+        <Route exact path="/" component={() => <BoardList/>}/>
+        <Route exact path="/:board" component={CardBoard}/>
+        <Route exact path="/:board/:article" component={Article} />
+        <Right />
+      </div>
+    );
+  }
+}
 
 
 export default Body;

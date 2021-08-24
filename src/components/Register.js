@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import logo from '../eevee.svg';
 import './form.css';
-
-const axios = require('axios');
+import axiosConfig from '../axiosConfig';
 
 class Register extends Component {
   constructor(props){
@@ -40,13 +39,13 @@ class Register extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios
+    axiosConfig
       .post("/register", this.state)
       .then(() => {this.props.history.push("/")});
   }
 
   handleClick(event) {
-    axios
+    axiosConfig
       .post("/register/id", {id: this.state.id})
       .then(
         /* returnData : Object

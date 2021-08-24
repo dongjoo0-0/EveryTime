@@ -6,24 +6,18 @@ import Login from './components/Login';
 import Register from './components/Register';
 
 class App extends Component {
-  state = {
-    loggedIn : false
-  }
-
   render(){
     return(
       <Switch>
         <Route path="/login">
-          {this.state.loggedIn ? <Redirect to={{pahtname: "/", state: {loggedIn: true}}} /> : <Login setState={result => {this.setState({loggedIn: result})}} />}
+          <Login />
         </Route>
         <Route path="/register" component={Register} />
         <Route path="/">
-          {this.state.loggedIn
-            ? <div>
-                <Nav />
-                <Body />
-              </div>
-            : <Redirect to="/login" />}
+          <div>
+            <Nav />
+            <Body />
+          </div>
         </Route>
       </Switch>
     );

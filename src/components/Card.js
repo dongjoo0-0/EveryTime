@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Write from './Write';
-
-const axios = require('axios');
+import axiosConfig from '../axiosConfig';
 
 class CardArticle extends Component {
   render(){
@@ -58,7 +57,7 @@ class Card extends Component {
   // {'자유게시판' , 'list', 4, '/1', 'article'}
 
   getData = () => {
-    axios
+    axiosConfig
       .get(this.props.link + '?length=' + this.props.length + '&type=' + this.props.type)
       .then(
         // data : [ ... {title, desc, time, boardtype, voteCnt, commentCnt, id(link)}]

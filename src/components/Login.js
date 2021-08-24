@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import logo from '../eevee.svg';
 import './form.css';
-
-const axios = require('axios');
+import axiosConfig from '../axiosConfig';
 
 class Login extends Component {
   constructor(props){
@@ -15,13 +14,14 @@ class Login extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    axios
+    axiosConfig
       .post('/login', {id: event.target[0].value, password: event.target[1].value})
       .then(
         returnData => {
-          console.log(returnData);
+          const accessToken = returnData.data.token;
+          axiosConfig.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+          localStorage.setItem("token", accessToken);
           if(returnData.data.result){
-            this.props.setState(true);
             this.props.history.push("/");
           } else {
             alert(returnData.data.reason);
